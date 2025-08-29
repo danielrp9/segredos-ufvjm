@@ -1,0 +1,22 @@
+<div id="comment-{{ comentario.id }}" class="flex w-full flex-row items-start justify-start gap-3">
+    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200">
+        <svg class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+            <path d="M234.38,210a112.5,112.5,0,0,0-212.76,0,8,8,0,0,0,7,14h198.8a8,8,0,0,0,7-14ZM128,120a40,40,0,1,1,40-40A40,40,0,0,1,128,120Z"></path>
+        </svg>
+    </div>
+    <div class="flex h-full flex-1 flex-col items-start justify-start">
+        <div class="flex w-full flex-row items-baseline justify-start gap-x-2">
+            <p class="text-[var(--text-primary)] text-sm font-bold leading-normal">Usuário Anônimo</p>
+            <p class="text-[var(--text-secondary)] text-xs font-normal leading-normal">{{ comentario.data_comentario|timesince }} atrás</p>
+        </div>
+        <p class="text-[var(--text-primary)] text-sm font-normal leading-relaxed mt-1">{{ comentario.corpo }}</p>
+
+        <button class="text-blue-500 text-xs mt-2 hover:underline reply-button" data-comment-id="{{ comentario.id }}">Responder</button>
+    </div>
+</div>
+
+<div class="space-y-6 mt-4 ml-6">
+    {% for reply in comentario.replies.all %}
+        {% include 'fofocas/comentario_arvore.html' with comentario=reply %}
+    {% endfor %}
+</div>

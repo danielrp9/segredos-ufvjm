@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght@400%3B500%3B700%3B900&family=Spline+Sans%3Awght@400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <title>Nova Fofoca</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-50: #fefef2;
+            --primary-100: #fcfce3;
+            --primary-200: #fafac6;
+            --primary-300: #f9f59f;
+            --primary-400: #f7f174;
+            --primary-500: #f5ed53;
+            --primary-600: #f4ea2b;
+            --primary-700: #f9f506;
+            --primary-800: #d4d005;
+            --primary-900: #b0ad04;
+            --primary-950: #585702;
+        }
+
+        /* Estilo para as tags */
+        .tag-button input[type="radio"] {
+            display: none;
+        }
+
+        .tag-button label {
+            display: inline-block;
+            cursor: pointer;
+            padding: 8px 16px;
+            font-weight: 500;
+            border-radius: 9999px;
+            border: 1px solid var(--primary-300);
+            background-color: var(--primary-100);
+            color: #1c1c0d;
+            transition-property: background-color, border-color, color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .tag-button input[type="radio"]:hover + label {
+            background-color: var(--primary-200);
+        }
+
+        .tag-button input[type="radio"]:checked + label {
+            background-color: var(--primary-700);
+            color: #1c1c0d;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-[var(--primary-50)]" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col overflow-x-hidden @container/design-root">
+        <header class="sticky top-0 z-10 bg-[var(--primary-50)]/80 backdrop-blur-sm">
+            <div class="mx-auto flex max-w-7xl items-center justify-between p-4">
+                <div class="flex items-center gap-4">
+                    <a href="{% url 'lista_fofocas' %}" class="flex size-10 items-center justify-center rounded-full text-[#1c1c0d]">
+                        <svg class="size-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="18" x2="6" y1="6" y2="18"></line>
+                            <line x1="6" x2="18" y1="6" y2="18"></line>
+                        </svg>
+                    </a>
+                    <h1 class="text-xl font-bold text-[#1c1c0d]">Nova Fofoca</h1>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 px-4 py-8">
+            <form id="post-form" method="post" class="mx-auto max-w-md space-y-6">
+                {% csrf_token %}
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-[#1c1c0d]">Título da Fofoca</label>
+                    {{ form.titulo }}
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-[#1c1c0d]">Corpo da Fofoca</label>
+                    {{ form.corpo }}
+                </div>
+                <div>
+                    <label class="mb-2 block text-sm font-medium text-[#1c1c0d]">Tags</label>
+                    <div class="flex flex-wrap gap-2">
+                        {% for choice in form.tags %}
+                        <div class="tag-button">
+                            {{ choice.tag }}
+                            <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer class="sticky bottom-0 bg-[var(--primary-50)]/80 pb-4 pt-2 backdrop-blur-sm">
+            <div class="mx-auto max-w-md px-4">
+                <button class="w-full rounded-full bg-[var(--primary-700)] px-4 py-3 text-base font-bold text-[#1c1c0d] transition-transform hover:scale-105 active:scale-95" type="submit" form="post-form">
+                    Publicar
+                </button>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* ufvjm-segredos/static/css/style.css */
+
+/* Paleta de cores do novo design */
+:root {
+  --primary-50: #fefef2;
+  --primary-100: #fcfce3;
+  --primary-200: #fafac6;
+  --primary-300: #f9f59f;
+  --primary-400: #f7f174;
+  --primary-500: #f5ed53;
+  --primary-600: #f4ea2b;
+  --primary-700: #f9f506;
+  --primary-800: #d4d005;
+  --primary-900: #b0ad04;
+  --primary-950: #585702;
+}
+
+body {
+  font-family: "Spline Sans", "Noto Sans", sans-serif;
+  min-height: max(884px, 100dvh);
+  background-color: var(--primary-50); /* Novo fundo */
+  color: #1c1c0d; /* Cor do texto principal */
+}
+
+/* Estilos para a barra de filtros (se precisar) */
+.tag-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.tag-filter {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #FFEB3B;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Estilizando as tags para parecerem botões */
+.radio-buttons input[type="radio"] {
+    display: none;
+}
+
+.radio-buttons label {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: #f1f1f1;
+    font-size: 0.9em;
+}
+
+.radio-buttons input[type="radio"]:checked + label {
+    background-color: #FFEB3B;
+    border-color: #FFEB3B;
+}
